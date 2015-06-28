@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Paulinapp</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css"></link>
+
+  </head>
+  <body role="document">
+
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Paulinapp</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+      <div class="jumbotron">
+        <h1>Fonctionnement de l'application :</h1>
+        <h2>1 - Selectionner votre PDF</h2>
+          Créer un répertoire, ajouter le pdf et selectionner dans cette application le répertoire
+        <h2>2 - Parcourer les fiches</h2>
+        <h2>3 - Corriger les fiches</h2>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <h1>Selectionner le PDF</h1>
+        <p>Le répertoire où se trouve le PDF servira de répertoire de travail (des images seront générés)</p>
+        <p>Une fois la sélection faite, le programme va prendre un peu de temps pour calculer et faire une première analyse de chaque fiche</p>
+
+        <div th:if="${etatApplication}">
+          <p>objet persisté</p>
+        </div>
+        <div th:unless="${etatApplication}">
+            <form action="/etape1/enregister-repertoire-travail"  method="post" class="form-inline" role="form">
+                <div class="form-group">
+                    <input type="text" name="nomRepertoire" class="form-control" placeholder="Choisir le répertoire de travail"/>
+                </div>
+                <button type="submit" class="btn btn-default">Enregistrer le répertoire de travail</button>
+            </form>
+        </div>
+        <div>
+           <h1><a th:href="@{/effacer-db}">Effacer la base de donner</a></h1>
+        </div>
+      </div>
+
+      <hr/>
+
+      <footer>
+        <p>&copy; Nicolas Le Coz 2015</p>
+      </footer>
+    </div>
+
+  </body>
+</html>
